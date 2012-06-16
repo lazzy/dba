@@ -1,4 +1,6 @@
 import MySQLdb
+import os
+import config
 
 class DB:
 	def __init__(self, user='root', host='localhost', passwd='password', dbname='mysql'):
@@ -7,7 +9,7 @@ class DB:
 		self.passwd = passwd
 		self.dbname = dbname
 
-	def get_dbs_list(self):
+	def dbslist(self):
 
 		db = MySQLdb.connect(host=self.host, user=self.user, passwd=self.passwd, db=self.dbname)	
 		db.query('SELECT Db from mysql.db;')
@@ -20,10 +22,16 @@ class DB:
 
 		return dblist
 
-	def get_db_dump(self, dbname):
-		pass
+	def dump(self, dbname):
+		
+		os.popen("mysqldump -u %s -p%s -h %s %s > %s.sql " % (self.user, self.passwd, self.host, dbname, dbname))
 
+	def dumpall(self):
+		
+		db = DB(passwd = config.dbpass)
 
-	def get_all_dbs(self):
-		pass
+		for db in db.dbslist():
+
+			os.popen("mysqldump -u %s -p%s -h %s %s > %s.sql " % (self.user, self.passwd, self.host, db, db))
+
 

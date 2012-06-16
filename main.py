@@ -1,7 +1,8 @@
 import db
+import config
 
-db1 = db.DB(passwd = '')
 
-res = db1.get_dbs_list()
+db1 = db.DB(passwd = config.dbpass)
 
-print res
+db1.dumpall()
+
