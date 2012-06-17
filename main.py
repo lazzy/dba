@@ -60,8 +60,5 @@ def action(choise):
 		menu()
 	
 
-print '-'*34
-print "-"*10 + "Welcome to DBA" + "-"*10
-print '-'*34
-
+print '-'*34 + '\n' + "-"*10 + "Welcome to DBA" + "-"*10 + '\n' + '-'*34
 passwordcheck()
