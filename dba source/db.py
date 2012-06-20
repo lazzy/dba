@@ -10,7 +10,7 @@ class DB:
 
 	def dbslist(self):
 		db = MySQLdb.connect(host=self.host, user=self.user, passwd=self.passwd, db=self.dbname)	
-		db.query('SELECT Db from mysql.db;')
+		db.query('SHOW DATABASES;')
 		r = db.use_result()
 		dblist = []
 		
